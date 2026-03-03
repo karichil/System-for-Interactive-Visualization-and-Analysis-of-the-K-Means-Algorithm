@@ -1,0 +1,51 @@
+﻿POST http://localhost:5075/api/centroids/init/manual
+Content-Type: application/json
+Content-Length: 28
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2025.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "x": 0.42,
+  "y": 0.73
+}
+
+###
+
+POST http://localhost:5075/api/centroids/init/manual
+Content-Type: application/json
+Content-Length: 28
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2025.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "x": 0.42,
+  "y": 0.73
+}
+
+###
+
+POST http://localhost:5075/api/centroids/init/manual
+Content-Type: application/json
+Content-Length: 28
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2025.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "x": 0.42,
+  "y": 0.73
+}
+
+###
+
+GET https://localhost:7016/weatherforecast/
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2025.1.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+<> 2025-08-01T000845.200.json
+
+###
+

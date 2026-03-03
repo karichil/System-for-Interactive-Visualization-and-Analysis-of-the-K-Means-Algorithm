@@ -1,0 +1,32 @@
+[
+  {
+    "date": "2025-08-02",
+    "temperatureC": -4,
+    "summary": "Cool",
+    "temperatureF": 25
+  },
+  {
+    "date": "2025-08-03",
+    "temperatureC": 29,
+    "summary": "Hot",
+    "temperatureF": 84
+  },
+  {
+    "date": "2025-08-04",
+    "temperatureC": 53,
+    "summary": "Freezing",
+    "temperatureF": 127
+  },
+  {
+    "date": "2025-08-05",
+    "temperatureC": 18,
+    "summary": "Freezing",
+    "temperatureF": 64
+  },
+  {
+    "date": "2025-08-06",
+    "temperatureC": 53,
+    "summary": "Hot",
+    "temperatureF": 127
+  }
+]
