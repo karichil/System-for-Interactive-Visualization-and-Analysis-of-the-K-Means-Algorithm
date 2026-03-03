@@ -1,0 +1,208 @@
+.App {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.App-nav {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  height: 105px;
+  flex-shrink: 0;
+  gap: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.App-chart-statistic {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-dialog-text-header{
+  color: #000;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.App-dialog-text{
+  color: rgba(0, 0, 0, 0.64);
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.App-logo {
+  width: 81px;
+  height: 81px;
+  aspect-ratio: 1/1;
+}
+
+.App-info-box{
+  display: flex;
+  padding: 6px 12px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 7px;
+}
+.App-info-row{
+  display: flex;
+  padding: 6px 12px;
+  flex-direction: row;
+  gap: 8px;
+  align-items: flex-start;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 7px;
+}
+
+.App-fileUpload{
+  display: flex;
+  padding: 8px 10px;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  height: auto;
+  width: fit-content;
+}
+
+.App-title-icon-box{
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+}
+
+.App-control-bar{
+  display: flex;
+  /*overflow-y: scroll;*/
+  padding: 8px 12px 16px 12px;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.App-cluser-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 4px;
+  border-radius: 7px;
+  background: rgba(0, 0, 0, 0.08);
+  font-size: small;
+}
+
+.App-group-box{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.App-chart{
+  width: 1062px;
+  height: 888px;
+  border: 0.5px solid #000;
+}
+
+.App-header {
+  color: #000;
+  font-family: Inter, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 133%;
+}
+
+.App-thesis{
+  color: #000;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.App-text-lg{
+  color: #000;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.App-text-md{
+  color: #000;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+
+}
+
+.App-text-md-bigger{
+  color: #000;
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.App-text-sm-normal{
+  color: #000;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.App-text-sm-medium{
+  color: #000;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.App-text-xs{
+  color:rgba(0, 0, 0, 0.64);
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.App-icon{
+  width: 24px;
+  height: 24px;
+}
+
+.App-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 8px;
+  align-self: stretch;
+}
