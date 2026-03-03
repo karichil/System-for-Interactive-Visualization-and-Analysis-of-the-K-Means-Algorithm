@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@chakra-ui/layout": "^2.3.1",
+    "@chakra-ui/react": "^3.27.0",
+    "recharts": "^3.3.0"
+  }
+}
