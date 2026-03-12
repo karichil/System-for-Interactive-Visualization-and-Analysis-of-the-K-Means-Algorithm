@@ -2,6 +2,6 @@
 
 public class DataSet
 { 
-	public List<DataPoint> Points { get; private set; } = new();
+	public List<DataPoint> Points { get; set; } = new();
 	
 }

@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMeansProject", "KMeansProj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMeansProject.Tests", "KMeansProject.Tests\KMeansProject.Tests.csproj", "{0B8651FC-45FA-4F03-AE0B-41B322853B15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMeans.NewTests", "KMeans.NewTests\KMeans.NewTests.csproj", "{87BE05E8-92CE-4130-94EA-ED9D6D9D39A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{0B8651FC-45FA-4F03-AE0B-41B322853B15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B8651FC-45FA-4F03-AE0B-41B322853B15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B8651FC-45FA-4F03-AE0B-41B322853B15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87BE05E8-92CE-4130-94EA-ED9D6D9D39A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87BE05E8-92CE-4130-94EA-ED9D6D9D39A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87BE05E8-92CE-4130-94EA-ED9D6D9D39A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87BE05E8-92CE-4130-94EA-ED9D6D9D39A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
