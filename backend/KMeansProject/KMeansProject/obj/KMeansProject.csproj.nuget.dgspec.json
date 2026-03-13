@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject\\KMeansProject.csproj": {}
+    "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KMeansProject\\KMeansProject\\KMeansProject.csproj": {}
   },
   "projects": {
-    "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject\\KMeansProject.csproj": {
+    "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KMeansProject\\KMeansProject\\KMeansProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject\\KMeansProject.csproj",
+        "projectUniqueName": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KMeansProject\\KMeansProject\\KMeansProject.csproj",
         "projectName": "KMeansProject",
-        "projectPath": "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject\\KMeansProject.csproj",
-        "packagesPath": "C:\\Users\\karin\\.nuget\\packages\\",
-        "outputPath": "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject\\obj\\",
+        "projectPath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KMeansProject\\KMeansProject\\KMeansProject.csproj",
+        "packagesPath": "C:\\Users\\barte\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KMeansProject\\KMeansProject\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\karin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\barte\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -103,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\barte\\.dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
