@@ -3,5 +3,10 @@
     "@chakra-ui/layout": "^2.3.1",
     "@chakra-ui/react": "^3.27.0",
     "recharts": "^3.3.0"
-  }
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.5.0"
+  },
+  "scripts": {}
 }

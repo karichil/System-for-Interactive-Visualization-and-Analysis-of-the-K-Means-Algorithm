@@ -9,7 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5b749e3-81a5-4ef2-9abb-ec4990560310" name="Changes" comment="" />
+    <list default="true" id="c5b749e3-81a5-4ef2-9abb-ec4990560310" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../frontend/KMeansFrontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/KMeansFrontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/KMeansFrontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/KMeansFrontend/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,7 +22,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -29,7 +32,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/karichil/KMeansVisualization.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/karichil/System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm.git&quot;,
     &quot;accountId&quot;: &quot;ac94cf83-75e9-4576-aa87-335248b5c779&quot;
   }
 }</component>
@@ -81,7 +84,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.6548387&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -257,6 +260,7 @@
       <workItem from="1769370827139" duration="4147000" />
       <workItem from="1770048290080" duration="3422000" />
       <workItem from="1772544118436" duration="587000" />
+      <workItem from="1773346273028" duration="7168000" />
     </task>
     <task id="LOCAL-00001" summary="clear and updateDataSet functions and dto, services and controllers folders">
       <option name="closed" value="true" />

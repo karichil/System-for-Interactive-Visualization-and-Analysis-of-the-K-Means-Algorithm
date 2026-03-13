@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vikIHC6d+4Q=",
+  "dgSpecHash": "j6XWLzfbY5k=",
   "success": true,
-  "projectFilePath": "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject.Tests\\KMeansProject.Tests.csproj",
+  "projectFilePath": "C:\\_Moje foldery\\MAGISTERKA\\SEM1\\AiTSI\\Projekt1\\backend\\KMeansProject\\KMeansProject.Tests\\KMeansProject.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\karin\\.nuget\\packages\\antlr4.runtime.standard\\4.12.0\\antlr4.runtime.standard.4.12.0.nupkg.sha512",
     "C:\\Users\\karin\\.nuget\\packages\\automapper\\16.0.0\\automapper.16.0.0.nupkg.sha512",
@@ -76,9 +76,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "KMeansProject depends on NCalcAsync (>= 3.5.1) but NCalcAsync 3.5.1 was not found. NCalcAsync 4.0.4 was resolved instead.",
-      "projectPath": "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject.Tests\\KMeansProject.Tests.csproj",
+      "projectPath": "C:\\_Moje foldery\\MAGISTERKA\\SEM1\\AiTSI\\Projekt1\\backend\\KMeansProject\\KMeansProject.Tests\\KMeansProject.Tests.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject.Tests\\KMeansProject.Tests.csproj",
+      "filePath": "C:\\_Moje foldery\\MAGISTERKA\\SEM1\\AiTSI\\Projekt1\\backend\\KMeansProject\\KMeansProject.Tests\\KMeansProject.Tests.csproj",
       "libraryId": "NCalcAsync",
       "targetGraphs": [
         "net9.0"
@@ -88,9 +88,9 @@
       "code": "NU1608",
       "level": "Warning",
       "message": "Detected package version outside of dependency constraint: AutoMapper.Extensions.Microsoft.DependencyInjection 12.0.1 requires AutoMapper (= 12.0.1) but version AutoMapper 16.0.0 was resolved.",
-      "projectPath": "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject.Tests\\KMeansProject.Tests.csproj",
+      "projectPath": "C:\\_Moje foldery\\MAGISTERKA\\SEM1\\AiTSI\\Projekt1\\backend\\KMeansProject\\KMeansProject.Tests\\KMeansProject.Tests.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject.Tests\\KMeansProject.Tests.csproj",
+      "filePath": "C:\\_Moje foldery\\MAGISTERKA\\SEM1\\AiTSI\\Projekt1\\backend\\KMeansProject\\KMeansProject.Tests\\KMeansProject.Tests.csproj",
       "libraryId": "AutoMapper",
       "targetGraphs": [
         "net9.0"

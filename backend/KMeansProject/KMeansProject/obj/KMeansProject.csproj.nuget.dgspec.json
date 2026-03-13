@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject\\KMeansProject.csproj": {}
+    "C:\\_Moje foldery\\MAGISTERKA\\SEM1\\AiTSI\\Projekt1\\backend\\KMeansProject\\KMeansProject\\KMeansProject.csproj": {}
   },
   "projects": {
-    "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject\\KMeansProject.csproj": {
+    "C:\\_Moje foldery\\MAGISTERKA\\SEM1\\AiTSI\\Projekt1\\backend\\KMeansProject\\KMeansProject\\KMeansProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject\\KMeansProject.csproj",
+        "projectUniqueName": "C:\\_Moje foldery\\MAGISTERKA\\SEM1\\AiTSI\\Projekt1\\backend\\KMeansProject\\KMeansProject\\KMeansProject.csproj",
         "projectName": "KMeansProject",
-        "projectPath": "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject\\KMeansProject.csproj",
+        "projectPath": "C:\\_Moje foldery\\MAGISTERKA\\SEM1\\AiTSI\\Projekt1\\backend\\KMeansProject\\KMeansProject\\KMeansProject.csproj",
         "packagesPath": "C:\\Users\\karin\\.nuget\\packages\\",
-        "outputPath": "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject\\obj\\",
+        "outputPath": "C:\\_Moje foldery\\MAGISTERKA\\SEM1\\AiTSI\\Projekt1\\backend\\KMeansProject\\KMeansProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

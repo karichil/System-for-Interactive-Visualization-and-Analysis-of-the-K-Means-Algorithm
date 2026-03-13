@@ -2953,11 +2953,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject.Tests\\KMeansProject.Tests.csproj",
+      "projectUniqueName": "C:\\_Moje foldery\\MAGISTERKA\\SEM1\\AiTSI\\Projekt1\\backend\\KMeansProject\\KMeansProject.Tests\\KMeansProject.Tests.csproj",
       "projectName": "KMeansProject.Tests",
-      "projectPath": "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject.Tests\\KMeansProject.Tests.csproj",
+      "projectPath": "C:\\_Moje foldery\\MAGISTERKA\\SEM1\\AiTSI\\Projekt1\\backend\\KMeansProject\\KMeansProject.Tests\\KMeansProject.Tests.csproj",
       "packagesPath": "C:\\Users\\karin\\.nuget\\packages\\",
-      "outputPath": "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject.Tests\\obj\\",
+      "outputPath": "C:\\_Moje foldery\\MAGISTERKA\\SEM1\\AiTSI\\Projekt1\\backend\\KMeansProject\\KMeansProject.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2979,8 +2979,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject\\KMeansProject.csproj": {
-              "projectPath": "C:\\_Moje foldery\\inżynierka\\KMeansProject\\KMeansProject\\KMeansProject.csproj"
+            "C:\\_Moje foldery\\MAGISTERKA\\SEM1\\AiTSI\\Projekt1\\backend\\KMeansProject\\KMeansProject\\KMeansProject.csproj": {
+              "projectPath": "C:\\_Moje foldery\\MAGISTERKA\\SEM1\\AiTSI\\Projekt1\\backend\\KMeansProject\\KMeansProject\\KMeansProject.csproj"
             }
           }
         }
