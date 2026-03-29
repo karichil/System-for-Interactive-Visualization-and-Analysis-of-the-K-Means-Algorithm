@@ -141,7 +141,7 @@ export default function AlgorithmControl({dataset, metricName, maxIterations, in
             if (finished) {
                 toaster.success({ title: "Algorithm Converged!", description: `Terminated at iteration: ${iteration}`, duration:1000 });
             } else {
-                toaster.info({ title: "Step foreward.", duration: 500 });
+                toaster.info({ title: "Step forward.", duration: 500 });
             }
         } catch (err: any) {
             console.error("Step-forward error:", err);
