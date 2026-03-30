@@ -82,7 +82,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.6548387&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;bartek-master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Bartek__Testy__Frontend&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -260,6 +260,8 @@
       <workItem from="1772544118436" duration="587000" />
       <workItem from="1773337162420" duration="1260000" />
       <workItem from="1773342618241" duration="1770000" />
+      <workItem from="1773392931184" duration="1909000" />
+      <workItem from="1774808140813" duration="1584000" />
     </task>
     <task id="LOCAL-00001" summary="clear and updateDataSet functions and dto, services and controllers folders">
       <option name="closed" value="true" />
