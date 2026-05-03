@@ -2,6 +2,8 @@ import {test, expect} from '@playwright/test';
 
 test.describe('Testy end-to-end', () => {
 
+    /*Autorem wszytskich testów z pliku jest Karina Chilkiewicz*/
+
     async function loadDataAndInitialize(page) {
         await page.goto('http://localhost:3000/');
         await page.getByRole('combobox').first().selectOption('grupped');
@@ -14,18 +16,9 @@ test.describe('Testy end-to-end', () => {
         await page.getByText('You can now run the algorithm').click();
     }
 
-    test('Przebieg algorytmu dla Finish result', async ({ page }) => {
-        await loadDataAndInitialize(page);
-
-        const finishBtn = page.getByRole('button', { name: /Finish result/i });
-        await expect(finishBtn).toBeEnabled();
-        await finishBtn.click();
-
-        await expect(page.getByText('Algorithm Converged!')).toBeVisible({ timeout: 20000 });
-        await expect(page.getByRole('button', { name: 'Play' })).toBeDisabled();
-        await expect(finishBtn).toBeDisabled();
-    });
-
+    /*Test przechodzi przez całą główną ścieżkę użytkownika: od inicjalizacji danych,
+     przez całkowite wykonanie algorytmu (do zbieżności), aż po poprawne odblokowanie i
+     otwarcie modułu analizy jakości grupowania.*/
     test('Otwarcie analizy jakości grupowania po zakończeniu algorytmu', async ({ page }) => {
         await loadDataAndInitialize(page);
         await page.getByRole('button', { name: /Finish result/i }).click();
@@ -38,34 +31,9 @@ test.describe('Testy end-to-end', () => {
         await expect(page.getByText('Clustering Quality Analysis')).toBeVisible({ timeout: 20000 });
     });
 
-    test('Przebieg algorytmu krok po kroku, działanie korku do przodu i tyłu oraz zmiany iteracji', async ({ page }) => {
-        await loadDataAndInitialize(page);
-        const stepForwardBtn = page.locator('button').filter({ has: page.locator('img[src*="forward"]') });
-        const stepBackBtn = page.locator('button').filter({ has: page.locator('img[src*="backwards"]') });
-
-        await stepForwardBtn.click();
-        await expect(page.getByText('Iteration: 1')).toBeVisible({ timeout: 20000 });
-        await expect(page.getByText('Step forward.')).toBeVisible({ timeout: 20000 });
-
-        await stepBackBtn.click();
-        await expect(page.getByText('Iteration: 0')).toBeVisible({ timeout: 6000 });
-        await expect(page.getByText('Step backward.')).toBeVisible({ timeout: 20000 });
-    });
-
-    test('Przebieg algorytmu w czasie rzeczywistym, działanie przycisków Play i Stop', async ({ page }) => {
-        await loadDataAndInitialize(page);
-        const playBtn = page.getByRole('button', { name: 'Play' });
-        const stopBtn = page.getByRole('button', { name: 'Stop' });
-
-        await playBtn.click();
-        await expect(page.getByText('Running...')).toBeVisible();
-        await expect(page.locator('button').filter({ has: page.locator('img[src*="forward"]') })).toBeDisabled();
-
-        await stopBtn.click();
-        await expect(page.getByText('Algorytm zapauzowany.')).toBeVisible({ timeout: 20000 });
-        await expect(playBtn).toBeEnabled();
-    });
-
+    /*Weryfikacja działania resetu podczas działania algorytmu. Test wykonuje sztuczne kroki w przód,
+     upewniając się, że iteracja wzrosła, a następnie wymusza reset i weryfikuje,
+     czy stan algorytmu poprawnie powrócił do punktu początkowego (iteracja 0).*/
     test('Resetowanie stanu algorytmu w trakcie działania', async ({ page }) => {
         await loadDataAndInitialize(page);
         const stepForwardBtn = page.locator('button').filter({ has: page.locator('img[src*="forward"]') });
@@ -83,6 +51,47 @@ test.describe('Testy end-to-end', () => {
         await expect(page.getByRole('button', { name: 'Play' })).toBeDisabled();
     });
 
+    /*Sprawdzenie działania pzrebiegu krok po kroku. Test weryfikuje, czy wskaźnika iteracji oarz powiadomienia toast
+     spójnie i poprawnie reagują na wykonywanie przez użytkownika korków w przód i w tył.*/
+    test('Przebieg algorytmu krok po kroku, działanie korku do przodu i tyłu oraz zmiany iteracji', async ({ page }) => {
+        await loadDataAndInitialize(page);
+        const stepForwardBtn = page.locator('button').filter({ has: page.locator('img[src*="forward"]') });
+        const stepBackBtn = page.locator('button').filter({ has: page.locator('img[src*="backwards"]') });
+
+        await stepForwardBtn.click();
+        await expect(page.getByText('Iteration: 1')).toBeVisible({ timeout: 20000 });
+        await expect(page.getByText('Step forward.')).toBeVisible({ timeout: 20000 });
+
+        await stepBackBtn.click();
+        await expect(page.getByText('Iteration: 0')).toBeVisible({ timeout: 6000 });
+        await expect(page.getByText('Step backward.')).toBeVisible({ timeout: 20000 });
+    });
+
+    test('Przebieg algorytmu dla Finish result', async ({ page }) => {
+        await loadDataAndInitialize(page);
+
+        const finishBtn = page.getByRole('button', { name: /Finish result/i });
+        await expect(finishBtn).toBeEnabled();
+        await finishBtn.click();
+
+        await expect(page.getByText('Algorithm Converged!')).toBeVisible({ timeout: 20000 });
+        await expect(page.getByRole('button', { name: 'Play' })).toBeDisabled();
+        await expect(finishBtn).toBeDisabled();
+    });
+
+    test('Przebieg algorytmu w czasie rzeczywistym, działanie przycisków Play i Stop', async ({ page }) => {
+        await loadDataAndInitialize(page);
+        const playBtn = page.getByRole('button', { name: 'Play' });
+        const stopBtn = page.getByRole('button', { name: 'Stop' });
+
+        await playBtn.click();
+        await expect(page.getByText('Running...')).toBeVisible();
+        await expect(page.locator('button').filter({ has: page.locator('img[src*="forward"]') })).toBeDisabled();
+
+        await stopBtn.click();
+        await expect(page.getByText('Algorytm zapauzowany.')).toBeVisible({ timeout: 20000 });
+        await expect(playBtn).toBeEnabled();
+    });
 
     test('Blokada kontrolek sterujących przed inicjalizacją danych', async ({ page }) => {
         await page.goto('http://localhost:3000/');
