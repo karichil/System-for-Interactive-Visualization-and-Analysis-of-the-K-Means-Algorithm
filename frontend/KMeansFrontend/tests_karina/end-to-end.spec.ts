@@ -51,7 +51,7 @@ test.describe('Testy end-to-end', () => {
         await expect(page.getByRole('button', { name: 'Play' })).toBeDisabled();
     });
 
-    /*Sprawdzenie działania pzrebiegu krok po kroku. Test weryfikuje, czy wskaźnika iteracji oarz powiadomienia toast
+    /*Sprawdzenie działania przebiegu krok po kroku. Test weryfikuje, czy wskaźnika iteracji oraz powiadomienia toast
      spójnie i poprawnie reagują na wykonywanie przez użytkownika korków w przód i w tył.*/
     test('Przebieg algorytmu krok po kroku, działanie korku do przodu i tyłu oraz zmiany iteracji', async ({ page }) => {
         await loadDataAndInitialize(page);
