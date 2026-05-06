@@ -1,54 +1,136 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import ManualEditing from "./components/ControlPanel/ManualEditing";
+import { EditMode, IDataSetDto } from "./types/interfaces";
 
-console.log("MANUAL TEST RUNNING");
+const dataset: IDataSetDto = {
+    points: [{ x: 1, y: 2, clusterId: 0 }],
+};
 
-const defaultProps = {
-    editMode: null,
-    setEditMode: jest.fn(),
-    dataset: null,
-    finalDataSet: [],
+const renderComponent = (overrides = {}) => {
+    const props = {
+        editMode: null as EditMode,
+        setEditMode: jest.fn(),
+        dataset: null as IDataSetDto | null,
+        finalDataSet: [],
+        ...overrides,
+    };
+
+    render(<ManualEditing {...props} />);
+
+    return props;
 };
 
 describe("ManualEditing", () => {
+    describe("rendering", () => {
+        test("renders manual editing title", () => {
+            renderComponent();
 
-    test("renders title", () => {
-        render(<ManualEditing {...defaultProps} />);
-        expect(screen.getByText(/manual editing/i)).toBeInTheDocument();
+            expect(screen.getByText(/manual editing/i)).toBeInTheDocument();
+        });
+
+        test("renders points button", () => {
+            renderComponent();
+
+            expect(
+                screen.getByRole("button", { name: "Points" })
+            ).toBeInTheDocument();
+        });
+
+        test("renders centroids button", () => {
+            renderComponent();
+
+            expect(
+                screen.getByRole("button", { name: "Centroids" })
+            ).toBeInTheDocument();
+        });
+
+        test("renders editing hints", () => {
+            renderComponent();
+
+            expect(screen.getByText(/click to add/i)).toBeInTheDocument();
+            expect(screen.getByText(/drag to move/i)).toBeInTheDocument();
+            expect(
+                screen.getByText(/right click to delete/i)
+            ).toBeInTheDocument();
+        });
     });
 
-    test("buttons disabled when no dataset", () => {
-        render(<ManualEditing {...defaultProps} dataset={null} />);
-        expect(screen.getByText("Points")).toBeDisabled();
+    describe("points button state", () => {
+        test("disables points button when dataset is null", () => {
+            renderComponent({ dataset: null });
+
+            expect(
+                screen.getByRole("button", { name: "Points" })
+            ).toBeDisabled();
+        });
+
+        test("enables points button when dataset contains points", () => {
+            renderComponent({ dataset });
+
+            expect(
+                screen.getByRole("button", { name: "Points" })
+            ).toBeEnabled();
+        });
+
+        test("disables points button when algorithm results exist", () => {
+            renderComponent({
+                dataset,
+                finalDataSet: dataset.points,
+            });
+
+            expect(
+                screen.getByRole("button", { name: "Points" })
+            ).toBeDisabled();
+        });
     });
 
-    test("buttons enabled when dataset exists", () => {
-        render(<ManualEditing {...defaultProps} dataset={{ points: [{ x: 1, y: 2, clusterId: 0 }] }} />);
-        expect(screen.getByText("Points")).not.toBeDisabled();
+    describe("points editing mode", () => {
+        test("activates points editing mode after clicking points button", () => {
+            const { setEditMode } = renderComponent({ dataset });
+
+            fireEvent.click(
+                screen.getByRole("button", { name: "Points" })
+            );
+
+            expect(setEditMode).toHaveBeenCalledWith("Points");
+        });
+
+        test("clears points editing mode when points mode is already active", () => {
+            const { setEditMode } = renderComponent({
+                dataset,
+                editMode: "Points" as EditMode,
+            });
+
+            fireEvent.click(
+                screen.getByRole("button", { name: "Points" })
+            );
+
+            expect(setEditMode).toHaveBeenCalledWith(null);
+        });
     });
 
-    test("Points button visible", () => {
-        render(<ManualEditing {...defaultProps} />);
-        expect(screen.getByText("Points")).toBeInTheDocument();
-    });
+    describe("centroids editing mode", () => {
+        test("activates centroids editing mode after clicking centroids button", () => {
+            const { setEditMode } = renderComponent({ dataset });
 
-    test("Centroids button visible", () => {
-        render(<ManualEditing {...defaultProps} />);
-        expect(screen.getByText(/centroid/i)).toBeInTheDocument();
-    });
+            fireEvent.click(
+                screen.getByRole("button", { name: "Centroids" })
+            );
 
-    test("component renders without crash", () => {
-        render(<ManualEditing {...defaultProps} />);
-    });
+            expect(setEditMode).toHaveBeenCalledWith("Centroids");
+        });
 
-    test("multiple renders safe", () => {
-        render(<ManualEditing {...defaultProps} />);
-        render(<ManualEditing {...defaultProps} />);
-    });
+        test("clears centroids editing mode when centroids mode is already active", () => {
+            const { setEditMode } = renderComponent({
+                dataset,
+                editMode: "Centroids" as EditMode,
+            });
 
-    test("no dataset handled", () => {
-        render(<ManualEditing {...defaultProps} dataset={null} />);
-        expect(screen.getByText("Points")).toBeDisabled();
-    });
+            fireEvent.click(
+                screen.getByRole("button", { name: "Centroids" })
+            );
 
+            expect(setEditMode).toHaveBeenCalledWith(null);
+        });
+    });
 });

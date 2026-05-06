@@ -1,92 +1,132 @@
-import { test, expect } from '@playwright/test';
-import * as path from 'path'
-async function loadDataset(page) {
+import { expect, Page, test } from "@playwright/test";
+import * as path from "path";
 
-    const filePath = path.resolve(__dirname, 'data', 'random_points.csv');
+const APP_URL = "http://localhost:3000";
 
-    const [fileChooser] = await Promise.all([
-        page.waitForEvent('filechooser'),
-        page.getByText(/drag & drop csv/i).click()
-    ]);
+const fileResult = {
+  headers: ["x", "y"],
+  processedData: [
+    [1, 2],
+    [3, 4],
+  ],
+};
 
-    await fileChooser.setFiles(filePath);
+const dataset = {
+  points: [
+    { x: 1, y: 2, clusterId: -1 },
+    { x: 3, y: 4, clusterId: -1 },
+  ],
+};
 
-    await expect(page.getByText('X-Axis')).toBeVisible({ timeout: 10000 });
+async function mockApi(page: Page) {
+  await page.route("**/api/**", async (route) => {
+    const request = route.request();
+
+    if (request.method() === "OPTIONS") {
+      await route.fulfill({
+        status: 204,
+        headers: corsHeaders(),
+      });
+      return;
+    }
+
+    const url = request.url();
+
+    if (url.includes("/api/FileManager/upload")) {
+      await route.fulfill({
+        status: 200,
+        headers: jsonHeaders(),
+        json: fileResult,
+      });
+      return;
+    }
+
+    if (url.includes("/api/DataSet/create")) {
+      await route.fulfill({
+        status: 200,
+        headers: jsonHeaders(),
+        json: dataset,
+      });
+      return;
+    }
+
+    await route.fulfill({
+      status: 200,
+      headers: jsonHeaders(),
+      json: {},
+    });
+  });
 }
 
-test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:3000');
-    await page.waitForLoadState('networkidle');
-    await loadDataset(page);
-});
+function corsHeaders() {
+  return {
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "GET,POST,PUT,DELETE,OPTIONS",
+    "access-control-allow-headers": "*",
+  };
+}
 
-test('Manual editing section visible', async ({ page }) => {
-    await expect(page.getByText('Manual editing')).toBeVisible();
-});
+function jsonHeaders() {
+  return {
+    ...corsHeaders(),
+    "content-type": "application/json",
+  };
+}
 
-test('Points button visible', async ({ page }) => {
-    await expect(page.getByRole('button', { name: 'Points' })).toBeVisible();
-});
+async function uploadDataset(page: Page) {
+  const filePath = path.resolve(__dirname, "data", "random_points.csv");
 
-test('Centroids button visible', async ({ page }) => {
-    await expect(page.getByRole('button', { name: 'Centroids' })).toBeVisible();
-});
+  await page.locator('input[type="file"]').setInputFiles(filePath);
+  await expect(page.getByRole("button", { name: "Points" })).toBeEnabled();
+}
 
-test('Points button enabled', async ({ page }) => {
-    await expect(page.getByRole('button', { name: 'Points' })).toBeEnabled();
-});
+test.describe("Manual editing", () => {
+  test.describe.configure({ mode: "serial" });
 
-test('Centroids button enabled', async ({ page }) => {
-    await expect(page.getByRole('button', { name: 'Centroids' })).toBeEnabled();
-});
+  test.beforeEach(async ({ page }) => {
+    await mockApi(page);
+    await page.goto(APP_URL, { waitUntil: "domcontentloaded" });
+  });
 
-test('Switch to points editing mode', async ({ page }) => {
-    const button = page.getByRole('button', { name: 'Points' });
-    await button.click();
-    await expect(button).toBeVisible();
-});
+  test("shows editing controls and instructions", async ({ page }) => {
+    await expect(page.getByText("Manual editing")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Points" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Centroids" })).toBeVisible();
+    await expect(page.getByText("Click to add")).toBeVisible();
+    await expect(page.getByText("Drag to move")).toBeVisible();
+    await expect(page.getByText("Right click to delete")).toBeVisible();
+  });
 
-test('Switch to centroids editing mode', async ({ page }) => {
-    const button = page.getByRole('button', { name: 'Centroids' });
-    await button.click();
-    await expect(button).toBeVisible();
-});
+  test("disables point editing before a dataset is loaded", async ({ page }) => {
+    await expect(page.getByRole("button", { name: "Points" })).toBeDisabled();
+  });
 
-test('Manual editing instructions visible', async ({ page }) => {
-    await expect(page.getByText('Click to add')).toBeVisible();
-});
+  test("enables point editing after loading a dataset", async ({ page }) => {
+    await uploadDataset(page);
 
-test('Drag instruction visible', async ({ page }) => {
-    await expect(page.getByText('Drag to move')).toBeVisible();
-});
+    await expect(page.getByRole("button", { name: "Points" })).toBeEnabled();
+  });
 
-test('Delete instruction visible', async ({ page }) => {
-    await expect(page.getByText('Right click to delete')).toBeVisible();
-});
+  test("keeps editing panel available while switching modes", async ({ page }) => {
+    await uploadDataset(page);
 
-test('Points button still visible after click', async ({ page }) => {
-    const button = page.getByRole('button', { name: 'Points' });
-    await button.click();
-    await expect(button).toBeVisible();
-});
+    await page.getByRole("button", { name: "Points" }).click();
+    await page.getByRole("button", { name: "Centroids" }).click();
 
-test('Centroids button still visible after click', async ({ page }) => {
-    const button = page.getByRole('button', { name: 'Centroids' });
-    await button.click();
-    await expect(button).toBeVisible();
-});
+    await expect(page.getByText("Manual editing")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Points" })).toBeEnabled();
+    await expect(page.getByRole("button", { name: "Centroids" })).toBeEnabled();
+  });
 
-test('Manual editing panel stable after interactions', async ({ page }) => {
-    await page.getByRole('button', { name: 'Points' }).click();
-    await page.getByRole('button', { name: 'Centroids' }).click();
-    await expect(page.getByText('Manual editing')).toBeVisible();
-});
+  test("sends dataset creation request before enabling manual point editing", async ({ page }) => {
+    const createRequest = page.waitForRequest("**/api/DataSet/create");
 
-test('Editing buttons exist together', async ({ page }) => {
-    await expect(page.getByRole('button', { name: 'Points' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Centroids' })).toBeVisible();
-});
+    await uploadDataset(page);
 
-test('Manual editing section remains visible', async ({ page }) => {
-    await expect(page.getByText('Manual editing')).toBeVisible();
+    expect((await createRequest).postDataJSON()).toEqual({
+      data: fileResult.processedData,
+      x: 0,
+      y: 1,
+    });
+  });
 });

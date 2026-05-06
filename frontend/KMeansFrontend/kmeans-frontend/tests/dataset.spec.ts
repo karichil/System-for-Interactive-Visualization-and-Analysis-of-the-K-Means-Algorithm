@@ -1,93 +1,166 @@
-import { test, expect } from '@playwright/test';
-import * as path from 'path'
+import { expect, Page, test } from "@playwright/test";
+import * as path from "path";
 
-async function uploadDataset(page, file: string) {
+const APP_URL = "http://localhost:3000";
 
-    const filePath = path.resolve(__dirname, 'data', file);
+const uploadedFileResult = {
+  headers: ["x", "y", "group"],
+  processedData: [
+    [1, 2, 0],
+    [3, 4, 1],
+    [5, 6, 1],
+  ],
+};
 
-    const [fileChooser] = await Promise.all([
-        page.waitForEvent('filechooser'),
-        page.getByText(/drag & drop csv/i).click()
-    ]);
+const createdDataset = {
+  points: [
+    { x: 1, y: 2, clusterId: -1 },
+    { x: 3, y: 4, clusterId: -1 },
+    { x: 5, y: 6, clusterId: -1 },
+  ],
+};
 
-    await fileChooser.setFiles(filePath);
+async function mockDatasetApi(page: Page) {
+  await page.route("**/api/**", async (route) => {
+    const request = route.request();
 
-    await expect(page.getByText('X-Axis')).toBeVisible({ timeout: 10000 });
+    if (request.method() === "OPTIONS") {
+      await route.fulfill({
+        status: 204,
+        headers: corsHeaders(),
+      });
+      return;
+    }
+
+    const url = request.url();
+
+    if (url.includes("/api/FileManager/upload")) {
+      await route.fulfill({
+        status: 200,
+        headers: jsonHeaders(),
+        json: uploadedFileResult,
+      });
+      return;
+    }
+
+    if (url.includes("/api/FileManager/load")) {
+      await route.fulfill({
+        status: 200,
+        headers: jsonHeaders(),
+        json: uploadedFileResult,
+      });
+      return;
+    }
+
+    if (url.includes("/api/DataSet/create")) {
+      await route.fulfill({
+        status: 200,
+        headers: jsonHeaders(),
+        json: createdDataset,
+      });
+      return;
+    }
+
+    if (url.includes("/api/DataSet/reset-data")) {
+      await route.fulfill({
+        status: 204,
+        headers: corsHeaders(),
+      });
+      return;
+    }
+
+    await route.fulfill({
+      status: 200,
+      headers: jsonHeaders(),
+      json: {},
+    });
+  });
 }
 
-test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:3000');
-    await page.waitForLoadState('networkidle');
-});
+function corsHeaders() {
+  return {
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "GET,POST,PUT,DELETE,OPTIONS",
+    "access-control-allow-headers": "*",
+  };
+}
 
-test('Dataset section visible', async ({ page }) => {
-    await expect(page.getByText('Data').first()).toBeVisible();
-});
+function jsonHeaders() {
+  return {
+    ...corsHeaders(),
+    "content-type": "application/json",
+  };
+}
 
-test('Upload dropzone visible', async ({ page }) => {
-    await expect(page.getByText(/drag & drop csv/i)).toBeVisible();
-});
+async function gotoApp(page: Page) {
+  await mockDatasetApi(page);
+  await page.goto(APP_URL, { waitUntil: "domcontentloaded" });
+}
 
-test('Example dataset selector visible', async ({ page }) => {
-    await expect(page.getByText('Example data')).toBeVisible();
-});
+async function uploadDataset(page: Page, fileName = "random_points.csv") {
+  const filePath = path.resolve(__dirname, "data", fileName);
 
-test('Reset button visible', async ({ page }) => {
-    await expect(page.getByText('Reset').first()).toBeVisible();
-});
+  await page.locator('input[type="file"]').setInputFiles(filePath);
 
-test('Upload dermatology dataset', async ({ page }) => {
-    await uploadDataset(page, 'dermatology_bez_wieku.csv');
-});
+  await expect(page.getByText("X-Axis")).toBeVisible();
+  await expect(page.getByText("Y-Axis")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Points" })).toBeEnabled();
+}
 
-test('Upload random points dataset', async ({ page }) => {
-    await uploadDataset(page, 'random_points.csv');
-});
+test.describe("Dataset section", () => {
+  test.describe.configure({ mode: "serial" });
 
-test('Upload simulated dataset', async ({ page }) => {
-    await uploadDataset(page, 'simulated_points.csv');
-});
+  test.beforeEach(async ({ page }) => {
+    await gotoApp(page);
+  });
 
-test('X axis selector visible after dataset load', async ({ page }) => {
-    await uploadDataset(page, 'random_points.csv');
-    await expect(page.getByText('X-Axis')).toBeVisible();
-});
+  test("shows the dataset controls", async ({ page }) => {
+    await expect(page.getByRole("heading", { name: "Data", exact: true })).toBeVisible();
+    await expect(page.getByText(/drag & drop csv file/i)).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Example data" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Reset" }).first()).toBeVisible();
+  });
 
-test('Y axis selector visible after dataset load', async ({ page }) => {
-    await uploadDataset(page, 'random_points.csv');
-    await expect(page.getByText('Y-Axis')).toBeVisible();
-});
+  test("uploads a CSV file and creates a dataset", async ({ page }) => {
+    const createRequest = page.waitForRequest("**/api/DataSet/create");
 
-test('Axis dropdowns visible', async ({ page }) => {
-    await uploadDataset(page, 'random_points.csv');
-    await expect(page.getByText('X-Axis')).toBeVisible();
-    await expect(page.getByText('Y-Axis')).toBeVisible();});
+    await uploadDataset(page);
 
-test('Dataset info appears after upload', async ({ page }) => {
-    await uploadDataset(page, 'random_points.csv');
-    await expect(page.getByText('X-Axis')).toBeVisible();
-    await expect(page.getByText('Y-Axis')).toBeVisible();});
+    const request = await createRequest;
+    expect(request.method()).toBe("POST");
+    expect(request.postDataJSON()).toEqual({
+      data: uploadedFileResult.processedData,
+      x: 0,
+      y: 1,
+    });
+  });
 
-test('Reset dataset button clickable', async ({ page }) => {
-    await uploadDataset(page, 'random_points.csv');
-    const reset = page.getByText('Reset').first();
-    await reset.click();
-    await expect(reset).toBeVisible();
-});
+  test("loads example data from the selector", async ({ page }) => {
+    const loadRequest = page.waitForRequest("**/api/FileManager/load?path=ExampleData/grid.csv");
 
-test('Dataset section still visible after reset', async ({ page }) => {
-    await uploadDataset(page, 'random_points.csv');
-    await page.getByText('Reset').first().click();
-    await expect(page.getByText('Data').first()).toBeVisible();
-});
+    await page.getByRole("combobox").first().selectOption("grid");
 
-test('Upload dataset twice', async ({ page }) => {
-    await uploadDataset(page, 'random_points.csv');
-    await uploadDataset(page, 'simulated_points.csv');
-    await expect(page.getByText('X-Axis')).toBeVisible();
-});
+    await expect(page.getByText("Grid Dataset")).toBeVisible();
+    await expect(page.getByText(/grid pattern/i)).toBeVisible();
+    await expect(loadRequest).resolves.toBeTruthy();
+  });
 
-test('Dataset area remains visible after upload', async ({ page }) => {
-    await uploadDataset(page, 'random_points.csv');
-    await expect(page.getByText('Data').first()).toBeVisible();
+  test("enables axis selectors for uploaded own data", async ({ page }) => {
+    await uploadDataset(page);
+
+    const selects = page.getByRole("combobox");
+    await expect(selects.nth(1)).toBeEnabled();
+    await expect(selects.nth(2)).toBeEnabled();
+  });
+
+  test("resets a loaded dataset", async ({ page }) => {
+    const resetRequest = page.waitForRequest("**/api/DataSet/reset-data");
+
+    await uploadDataset(page);
+    await page.getByRole("button", { name: "Reset" }).first().click();
+
+    expect((await resetRequest).method()).toBe("DELETE");
+    await expect(page.getByRole("heading", { name: "Data", exact: true })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Points" })).toBeDisabled();
+  });
 });

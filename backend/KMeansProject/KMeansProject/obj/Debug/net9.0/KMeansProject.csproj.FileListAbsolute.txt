@@ -126,3 +126,4 @@ C:\Users\barte\OneDrive\Pulpit\Inżynierka\System-for-Interactive-Visualization-
 C:\Users\barte\OneDrive\Pulpit\Inżynierka\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\backend\KMeansProject\KMeansProject\obj\Debug\net9.0\KMeansProject.pdb
 C:\Users\barte\OneDrive\Pulpit\Inżynierka\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\backend\KMeansProject\KMeansProject\obj\Debug\net9.0\KMeansProject.genruntimeconfig.cache
 C:\Users\barte\OneDrive\Pulpit\Inżynierka\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\backend\KMeansProject\KMeansProject\obj\Debug\net9.0\ref\KMeansProject.dll
+C:\Users\barte\OneDrive\Pulpit\Inżynierka\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\backend\KMeansProject\KMeansProject\obj\Debug\net9.0\swae.build.ex.cache

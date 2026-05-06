@@ -20,7 +20,15 @@ const createElement = (tag: any = "div") => {
                 "width",
                 "display",
                 "flex",
-                "asChild"
+                "asChild",
+                "colorScheme",
+                "direction",
+                "w",
+                "h",
+                "minH",
+                "ml",
+                "py",
+                "size"
             ];
 
             if (!forbidden.includes(key)) {
@@ -78,9 +86,7 @@ jest.mock("@chakra-ui/react", () => {
         },
 
         NativeSelect: {
-            Root: ({ children, ...props }: any) => (
-                <div {...props}>{children}</div>
-            ),
+            Root: passthrough("div"),
             Field: ({ children, ...props }: any) => (
                 <select {...props}>{children}</select>
             ),
