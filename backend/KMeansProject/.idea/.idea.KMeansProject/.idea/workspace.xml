@@ -10,10 +10,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5b749e3-81a5-4ef2-9abb-ec4990560310" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../frontend/KMeansFrontend/tests_karina/api-karina.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/KMeansFrontend/tests_karina/frontend-mock.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/KMeansFrontend/tests_karina/global-state-setup.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/KMeansFrontend/tests_karina/storage-state-tests.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/KMeansFrontend/tests_karina/mock-test.sepc.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.KMeansProject/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KMeansProject/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.KMeansProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KMeansProject/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KMeansProject.Tests/obj/Debug/net9.0/KMeansProject.Tests.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KMeansProject.Tests/obj/Debug/net9.0/KMeansProject.Tests.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KMeansProject.Tests/obj/Debug/net9.0/KMeansProject.Tests.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/KMeansProject.Tests/obj/Debug/net9.0/KMeansProject.Tests.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KMeansProject.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/KMeansProject.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KMeansProject/bin/Debug/net9.0/KMeansProject.dll" beforeDir="false" afterPath="$PROJECT_DIR$/KMeansProject/bin/Debug/net9.0/KMeansProject.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KMeansProject/bin/Debug/net9.0/KMeansProject.exe" beforeDir="false" afterPath="$PROJECT_DIR$/KMeansProject/bin/Debug/net9.0/KMeansProject.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KMeansProject/bin/Debug/net9.0/KMeansProject.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/KMeansProject/bin/Debug/net9.0/KMeansProject.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/KMeansProject.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/KMeansProject.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/KMeansProject.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/KMeansProject.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/KMeansProject.dll" beforeDir="false" afterPath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/KMeansProject.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/KMeansProject.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/KMeansProject.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/KMeansProject.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/KMeansProject.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/ref/KMeansProject.dll" beforeDir="false" afterPath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/ref/KMeansProject.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/refint/KMeansProject.dll" beforeDir="false" afterPath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/refint/KMeansProject.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/rjsmcshtml.dswa.cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/rjsmcshtml.dswa.cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/rjsmrazor.dswa.cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/KMeansProject/obj/Debug/net9.0/rjsmrazor.dswa.cache.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +107,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\JetBrains Rider 2025.1.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -273,6 +288,8 @@
       <workItem from="1777883832047" duration="2444000" />
       <workItem from="1778055919134" duration="3028000" />
       <workItem from="1778090501705" duration="4406000" />
+      <workItem from="1778178074992" duration="5873000" />
+      <workItem from="1778188212629" duration="307000" />
     </task>
     <task id="LOCAL-00001" summary="clear and updateDataSet functions and dto, services and controllers folders">
       <option name="closed" value="true" />
@@ -386,7 +403,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772544167492</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="ostatecznie testy projekt">
+      <option name="closed" value="true" />
+      <created>1778184797764</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1778184797764</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -409,6 +434,7 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
       <path value="$PROJECT_DIR$/../KMeansFrontend" />
+      <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="clear and updateDataSet functions and dto, services and controllers folders" />
@@ -426,7 +452,8 @@
     <MESSAGE value="random init added" />
     <MESSAGE value="unit test added" />
     <MESSAGE value="final version" />
-    <option name="LAST_COMMIT_MESSAGE" value="final version" />
+    <MESSAGE value="ostatecznie testy projekt" />
+    <option name="LAST_COMMIT_MESSAGE" value="ostatecznie testy projekt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
