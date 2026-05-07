@@ -10,7 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5b749e3-81a5-4ef2-9abb-ec4990560310" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../frontend/KMeansFrontend/tests_karina/example.spec.ts" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/KMeansFrontend/tests_karina/api-karina.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/KMeansFrontend/tests_karina/frontend-mock.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/KMeansFrontend/tests_karina/global-state-setup.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/KMeansFrontend/tests_karina/storage-state-tests.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +93,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\JetBrains Rider 2025.1.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -266,6 +270,9 @@
       <workItem from="1773747871733" duration="645000" />
       <workItem from="1774788255563" duration="1853000" />
       <workItem from="1774859060800" duration="1433000" />
+      <workItem from="1777883832047" duration="2444000" />
+      <workItem from="1778055919134" duration="3028000" />
+      <workItem from="1778090501705" duration="4406000" />
     </task>
     <task id="LOCAL-00001" summary="clear and updateDataSet functions and dto, services and controllers folders">
       <option name="closed" value="true" />

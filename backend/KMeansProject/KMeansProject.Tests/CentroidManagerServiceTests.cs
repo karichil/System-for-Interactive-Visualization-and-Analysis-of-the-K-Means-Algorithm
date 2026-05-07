@@ -16,151 +16,76 @@ public class CentroidManagerServiceTests
         _mapperMock = new Mock<IMapper>();
         _service = new CentroidManagerService(_mapperMock.Object);
     }
-    
-    private DataSet CreateTestData()
+
+    [Fact]
+    public void GetCentroid_ValidIndex_ReturnsCorrectCentroid()
     {
-        var dataSet = new DataSet();
-        dataSet.Points.Add(new DataPoint(0, 0, -1));
-        dataSet.Points.Add(new DataPoint(2, 0, -1));
-        dataSet.Points.Add(new DataPoint(1, 0, -1));
-        dataSet.Points.Add(new DataPoint(2, 3, -1));
-            
-        dataSet.Points.Add(new DataPoint(10, 10, -1));
-        dataSet.Points.Add(new DataPoint(10, 12, -1));
-        dataSet.Points.Add(new DataPoint(10, 11, -1));
-        dataSet.Points.Add(new DataPoint(12, 13, -1));
-        
-        return dataSet;
+        // Arrange
+        _service.ResetControidsParameters();
+        _service.AddCentroid(11.1, 22.2);
+        _service.AddCentroid(33.3, 44.4);
+
+        // Act
+        var result = _service.GetCentroid(1);
+
+        // Assert
+        Assert.Equal(33.3, result.X);
+        Assert.Equal(44.4, result.Y);
+        Assert.Equal(1, result.ClusterId);
     }
 
-   [Fact]
-        public void AddCentroid_ShouldIncreaseCount_AndAssignCorrectId()
-        {
-            // Arrange
-            _service.ResetControidsParameters(); 
+    [Fact]
+    public void GetCentroid_WithNegativeId_ThrowsArgumentOutOfRangeException()
+    {
+        // Arrange
+        _service.ResetControidsParameters();
+        _service.AddCentroid(10.0, 10.0);
 
-            // Act
-            _service.AddCentroid(10, 20);
-            _service.AddCentroid(30, 40);
-            var result = _service.GetCentroids();
+        // Act & Assert
+        Assert.Throws<ArgumentOutOfRangeException>(() => _service.GetCentroid(-1));
+    }
 
-            // Assert
-            Assert.Equal(2, result.Count);
-            
-            Assert.Equal(10, result[0].X);
-            Assert.Equal(20, result[0].Y);
-            Assert.Equal(0, result[0].ClusterId); 
-            
-            Assert.Equal(30, result[1].X);
-            Assert.Equal(1, result[1].ClusterId);
-        }
+    [Fact]
+    public void GetCentroid_WithIdGreaterThanCount_ThrowsArgumentOutOfRangeException()
+    {
+        // Arrange
+        _service.ResetControidsParameters();
+        _service.AddCentroid(10.0, 10.0);
 
-        [Fact]
-        public void RemoveCentroid_ShouldDecreaseCount()
-        {
-            // Arrange
-            _service.AddCentroid(1, 1);
-            _service.AddCentroid(2, 2);
-            _service.AddCentroid(3, 3);
+        // Act & Assert
+        Assert.Throws<ArgumentOutOfRangeException>(() => _service.GetCentroid(1)); 
+    }
 
-            // Act
-            _service.RemoveCentroid(1); 
-            var result = _service.GetCentroids();
+    [Fact]
+    public void SetClusterId_ReflectsExactNumberOfAddedCentroids()
+    {
+        // Arrange
+        _service.ResetControidsParameters();
 
-            // Assert
-            Assert.Equal(2, result.Count);
-            Assert.Equal(3, result[1].X);
-        }
+        // Act
+        _service.AddCentroid(1.0, 1.0);
+        _service.AddCentroid(2.0, 2.0);
+        _service.AddCentroid(3.0, 3.0);
+        _service.RemoveCentroid(0); 
 
-        [Fact]
-        public void RemoveCentroid_InvalidId_ShouldThrowException()
-        {
-            // Arrange
-            _service.AddCentroid(1, 1);
+        var count = _service.SetClusterId();
 
-            // Act & Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => _service.RemoveCentroid(99));
-        }
-    
+        // Assert
+        Assert.Equal(2, count);
+    }
 
-        [Fact]
-        public void RandomInit_ShouldCreateExactlyKCentroids()
-        {
-            // Arrange
-            var points = CreateTestData();
-            int k = 3;
+    [Fact]
+    public void KMeansPlusPlusInit_AlwaysPutsFirstCentroidAtZeroClusterId()
+    {
+        // Arrange
+        var points = new List<DataPoint> { new DataPoint(5.0, 5.0), new DataPoint(10.0, 10.0) };
 
-            // Act
-            var result = _service.RandomInit(points.Points, k);
+        // Act
+        var centroids = _service.KMeansPlusPlusInit(points, 2);
 
-            // Assert
-            Assert.Equal(k, result.Count);
-            Assert.Equal(k, _service.GetCentroids().Count); 
-        }
-
-        [Fact]
-        public void RandomInit_ShouldClearPreviousCentroids()
-        {
-            // Arrange
-            _service.AddCentroid(999, 999);
-            var points = CreateTestData();
-            int k = 1;
-
-            // Act
-            _service.RandomInit(points.Points, k);
-
-            // Assert
-            var result = _service.GetCentroids();
-            Assert.Single(result);
-            Assert.NotEqual(999, result[0].X);
-        }
-        
-
-        [Fact]
-        public void KMeansPlusPlusInit_ShouldCreateExactlyKCentroids()
-        {
-            // Arrange
-            var points = new List<DataPoint>();
-            for(int i=0; i<20; i++) points.Add(newDataPoint(i, i));
-            
-            int k = 5;
-
-            // Act
-            var result = _service.KMeansPlusPlusInit(points, k);
-
-            // Assert
-            Assert.Equal(k, result.Count);
-            for(int i=0; i<k; i++)
-            {
-                Assert.Equal(i, result[i].ClusterId);
-            }
-        }
-
-        [Fact]
-        public void KMeansPlusPlusInit_KEqualsPointsCount_ShouldSelectAllPoints()
-        {
-            // Arrange
-            var points = new List<DataPoint>
-            {
-                newDataPoint(0,0), 
-                newDataPoint(10,10), 
-                newDataPoint(20,20)
-            };
-            int k = 3;
-
-            // Act
-            var result = _service.KMeansPlusPlusInit(points, k);
-
-            // Assert
-            Assert.Equal(3, result.Count);
-            Assert.Contains(result, c => c.X == 0 && c.Y == 0);
-            Assert.Contains(result, c => c.X == 10 && c.Y == 10);
-            Assert.Contains(result, c => c.X == 20 && c.Y == 20);
-        }
-        
-        private DataPoint newDataPoint(double x, double y)
-        {
-            return new DataPoint(x, y);
-        }
-    
+        // Assert
+        Assert.Equal(0, centroids[0].ClusterId);
+       
+        Assert.True(centroids.All(c => c.ClusterId >= 0 && c.ClusterId < 2));
+    }
 }

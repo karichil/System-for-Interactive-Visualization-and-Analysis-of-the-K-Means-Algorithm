@@ -44,21 +44,8 @@ public class KMeansAlgorithmServiceTests
 
             return (dataSet, centroidManager);
         }
-
-        [Fact]
-        public void AlgorithmInitialization_ShouldResetStateAndSaveSnapshot()
-        {
-            var (dataSet, centroidManager) = CreateTestData();
-            
-            _service.AlgorithmInitialization(dataSet, centroidManager, _metric, 10);
-            
-            Assert.Equal(0, _service.GetIteration());
-            Assert.False(_service.IsAlgorithmFinished());
-            
-            var currentCentroids = _service.GetCurrentCentroids();
-            Assert.Equal(2, currentCentroids.Count);
-        }
-
+        
+        /* Sprawdza, czy po 1 korku punkty są przypisywane do najbliższych klastrów.*/
         [Fact]
         public void StepForward_ShouldAssignPointsToNearestClusters()
         {
@@ -78,6 +65,7 @@ public class KMeansAlgorithmServiceTests
             Assert.Equal(1, points[3].ClusterId);
         }
 
+        /*Sprawdza, czy po 1 kroku centroidy po przypisaniu punktów do nich, zmieniają swoje położenie na środek klastra.*/
         [Fact]
         public void StepForward_ShouldRecalculateCentroidsPosition()
         {
@@ -97,6 +85,7 @@ public class KMeansAlgorithmServiceTests
             Assert.Equal(11, centroids[1].Y);
         }
 
+        /*Sprawdza, czy jeśli zrobimy krok w przyód i później w tył to faktycznie cofniemy się do poprzedniego stanu.*/
         [Fact]
         public void StepBackward_ShouldRevertToPreviousState()
         {
@@ -118,6 +107,20 @@ public class KMeansAlgorithmServiceTests
             Assert.Equal(1, iterationAfterStep);
             Assert.Equal(0, iterationAfterBack);
             Assert.Equal(initialCentroidX, centroidAfterBack[0].X);
+        }
+        
+        [Fact]
+        public void AlgorithmInitialization_ShouldResetStateAndSaveSnapshot()
+        {
+            var (dataSet, centroidManager) = CreateTestData();
+            
+            _service.AlgorithmInitialization(dataSet, centroidManager, _metric, 10);
+            
+            Assert.Equal(0, _service.GetIteration());
+            Assert.False(_service.IsAlgorithmFinished());
+            
+            var currentCentroids = _service.GetCurrentCentroids();
+            Assert.Equal(2, currentCentroids.Count);
         }
 
         [Fact]
@@ -179,5 +182,134 @@ public class KMeansAlgorithmServiceTests
 
             Assert.Equal(0, centroids[1].X);
             Assert.Equal(0, centroids[1].Y);
+        }
+        
+        [Fact]
+        public void StepBackward_AtIterationZero_ShouldNotThrowAndStayAtZero()
+        {
+            // Arrange
+            var (dataSet, centroidManager) = CreateTestData();
+            _service.AlgorithmInitialization(dataSet, centroidManager, _metric, 10);
+
+            // Act
+            _service.StepBackward();
+
+            // Assert
+            Assert.Equal(0, _service.GetIteration());
+        }
+
+        [Fact]
+        public void Stop_ShouldSetAlgorithmToFinished()
+        {
+            // Arrange
+            var (dataSet, centroidManager) = CreateTestData();
+            _service.AlgorithmInitialization(dataSet, centroidManager, _metric, 10);
+
+            // Act
+            _service.Stop();
+
+            // Assert
+            Assert.True(_service.IsAlgorithmFinished());
+        }
+
+        [Fact]
+        public void PauseAndPlay_ShouldNotThrowExceptions()
+        {
+            // Arrange
+            var (dataSet, centroidManager) = CreateTestData();
+            _service.AlgorithmInitialization(dataSet, centroidManager, _metric, 10);
+
+            // Act & Assert
+            var exception = Record.Exception(() =>
+            {
+                _service.Pause();
+                _service.Play();
+            });
+
+            Assert.Null(exception);
+        }
+
+        [Fact]
+        public void GetCurrentDataPoints_ShouldReturnCopiesNotReferences()
+        {
+            // Arrange
+            var (dataSet, centroidManager) = CreateTestData();
+            _service.AlgorithmInitialization(dataSet, centroidManager, _metric, 10);
+
+            // Act
+            var points = _service.GetCurrentDataPoints();
+            points[0].X = 999.9;
+
+            // Assert
+            var originalPoints = _service.GetCurrentDataPoints();
+            Assert.NotEqual(999.9, originalPoints[0].X);
+        }
+
+        [Fact]
+        public void GetCurrentCentroids_ShouldReturnCopiesNotReferences()
+        {
+            // Arrange
+            var (dataSet, centroidManager) = CreateTestData();
+            _service.AlgorithmInitialization(dataSet, centroidManager, _metric, 10);
+
+            // Act
+            var centroids = _service.GetCurrentCentroids();
+            centroids[0].X = 999.9;
+
+            // Assert
+            var originalCentroids = _service.GetCurrentCentroids();
+            Assert.NotEqual(999.9, originalCentroids[0].X);
+        }
+
+        [Fact]
+        public void StepForward_WhenReachesConvergence_SetsStateToFinished()
+        {
+            // Arrange
+            var (dataSet, centroidManager) = CreateTestData();
+            _service.AlgorithmInitialization(dataSet, centroidManager, _metric, 10);
+
+            // Act
+            _service.StepForward();
+            _service.StepForward();
+            _service.StepForward();
+
+            // Assert
+            Assert.True(_service.IsAlgorithmFinished());
+        }
+
+        [Fact]
+        public void FinishResult_WithZeroMaxIterations_ShouldNotChangeIteration()
+        {
+            // Arrange
+            var (dataSet, centroidManager) = CreateTestData();
+            var initialX = centroidManager.Centroids[0].X;
+            
+            _service.AlgorithmInitialization(dataSet, centroidManager, _metric, 0);
+
+            // Act
+            _service.FinishResult(0);
+
+            // Assert
+            var centroids = _service.GetCurrentCentroids();
+            Assert.Equal(initialX, centroids[0].X);
+            Assert.Equal(0, _service.GetIteration());
+        }
+
+        [Fact]
+        public void HistoryPlayback_ShouldNotRecalculateIfAlreadyInHistory()
+        {
+            // Arrange
+            var (dataSet, centroidManager) = CreateTestData();
+            _service.AlgorithmInitialization(dataSet, centroidManager, _metric, 10);
+
+            _service.StepForward();
+            _service.StepForward();
+            
+            // Act
+            _service.StepBackward(); 
+            _service.StepForward(); 
+
+            // Assert
+            Assert.Equal(2, _service.GetIteration());
         }
 }

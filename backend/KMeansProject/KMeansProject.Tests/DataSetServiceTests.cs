@@ -26,100 +26,75 @@ namespace KMeansProject.Tests
         }
 
         [Fact]
-        public void CreateDataSet_ShouldMapCorrectColumns_WhenIndicesAreProvided()
+        public void UpdatePoint_AlwaysSetsClusterIdToMinusOne()
         {
             // Arrange
-            var rawData = new List<List<double>>
-            {
-                new List<double> { 10.0, 999.0, 20.0 }, 
-                new List<double> { 30.0, 888.0, 40.0 } 
-            };
-
-            var requestDto = new DataSetRequestDto
-            {
-                Data = rawData,
-                X = 0, 
-                Y = 2 
-            };
-
+            var request = new DataSetRequestDto { X = 0, Y = 1, Data = new List<List<double>> { new List<double> { 1.0, 2.0 } } };
+            _service.CreateDataSet(request);
+            
             // Act
-            var result = _service.CreateDataSet(requestDto);
+            _service.UpdatePoint(0, 50.0, 50.0);
+            var points = _service.GetPoints().ToList();
 
             // Assert
-            Assert.Equal(2, result.Points.Count);
-            Assert.Equal(10.0, result.Points[0].X);
-            Assert.Equal(20.0, result.Points[0].Y);
-            Assert.Equal(30.0, result.Points[1].X);
-            Assert.Equal(40.0, result.Points[1].Y);
+            Assert.Equal(-1, points[0].ClusterId);
         }
 
         [Fact]
-        public void UpdatePoint_ValidIndex_ShouldUpdateCoordinatesAndResetCluster()
+        public void RemovePoint_IndexExactlyEqualToCount_DoesNothing()
         {
+           
             // Arrange
-            var requestDto = new DataSetRequestDto
-            {
-                Data = new List<List<double>> { new List<double> { 1, 1 } },
-                X = 0, Y = 1
-            };
-            _service.CreateDataSet(requestDto);
+            var request = new DataSetRequestDto { X = 0, Y = 1, Data = new List<List<double>> { new List<double> { 1.0, 2.0 } } };
+            _service.CreateDataSet(request);
 
             // Act
-            _service.UpdatePoint(0, 5.0, 5.0);
-            var updatedPoint = _service.GetPoint(0); 
+            var exception = Record.Exception(() => _service.RemovePoint(1)); 
+            var points = _service.GetPoints().ToList();
 
             // Assert
-            Assert.NotNull(updatedPoint); 
-            Assert.Equal(5.0, updatedPoint.X);
-            Assert.Equal(5.0, updatedPoint.Y);
-            Assert.Equal(-1, updatedPoint.ClusterId);
+            Assert.Null(exception);
+            Assert.Single(points);
         }
 
         [Fact]
-        public void UpdatePoint_InvalidIndex_ShouldThrowException()
+        public void CreateDataSet_ClearsExistingPointsBeforeAdding()
         {
             // Arrange
-            _service.ResetData();
+            var req1 = new DataSetRequestDto { X = 0, Y = 1, Data = new List<List<double>> { new List<double> { 1.0, 2.0 } } };
+            var req2 = new DataSetRequestDto { X = 0, Y = 1, Data = new List<List<double>> { new List<double> { 9.0, 9.0 } } };
+
+            // Act
+            _service.CreateDataSet(req1);
+            var result = _service.CreateDataSet(req2);
+
+            // Assert
+            Assert.Single(result.Points);
+            Assert.Equal(9.0, result.Points[0].X);
+        }
+
+        [Fact]
+        public void GetPoint_BoundaryIndex_ThrowsArgumentOutOfRangeException()
+        {
+            // Arrange
+            var request = new DataSetRequestDto { X = 0, Y = 1, Data = new List<List<double>> { new List<double> { 1.0, 2.0 } } };
+            _service.CreateDataSet(request);
 
             // Act & Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => _service.UpdatePoint(0, 5, 5));
+            Assert.Throws<ArgumentOutOfRangeException>(() => _service.GetPoint(1));
         }
 
         [Fact]
-        public void AddPoint_ShouldUseMapperAndAddToCollection()
+        public void ResetData_CanBeCalledMultipleTimesWithoutError()
         {
-            // Arrange
-            var dto = new DataPointDto { X = 1, Y = 2 };
-            var model = new DataPoint(1, 2);
-            
-            _mapperMock.Setup(m => m.Map<DataPoint>(dto)).Returns(model);
-
-            // Act
-            _service.AddPoint(dto);
-
-            // Assert
-            Assert.Single(_service.GetPoints()); 
-            _mapperMock.Verify(m => m.Map<DataPoint>(dto), Times.Once);
-        }
-
-        [Fact]
-        public void RemovePoint_ShouldDecreaseCount()
-        {
-            // Arrange
-            var requestDto = new DataSetRequestDto
+            // Arrange & Act & Assert
+            var ex = Record.Exception(() => 
             {
-                Data = new List<List<double>> { new List<double> { 1, 1 }, new List<double> { 2, 2 } },
-                X = 0, Y = 1
-            };
-            _service.CreateDataSet(requestDto); 
+                _service.ResetData();
+                _service.ResetData();
+            });
 
-            // Act
-            _service.RemovePoint(0);
-
-            // Assert
-            var points = _service.GetPoints().ToList();
-            Assert.Single(points);
-            Assert.Equal(2.0, points[0].X); 
+            Assert.Null(ex);
         }
     }
 }

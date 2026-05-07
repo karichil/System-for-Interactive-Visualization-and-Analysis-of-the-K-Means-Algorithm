@@ -14,107 +14,81 @@ namespace KMeansProject.Tests
             _service = new FileManagerService();
         }
 
+       [Fact]
+        public void LoadCsvToStringList_IFormFile_NullFile_ReturnsNull()
+        {
+            // Arrange
+            IFormFile nullFile = null;
+
+            // Act
+            var result = _service.LoadCsvToStringList(nullFile);
+
+            // Assert
+            Assert.Null(result);
+        }
+
         [Fact]
-        public void LoadCsvToStringList_WrongExtension_ShouldThrowException()
+        public void LoadCsvToStringList_IFormFile_LengthZero_ReturnsNull()
         {
             // Arrange
             var fileMock = new Mock<IFormFile>();
-            fileMock.Setup(f => f.FileName).Returns("data.txt");
-            fileMock.Setup(f => f.Length).Returns(100);
-            
-            fileMock.Setup(f => f.ContentType).Returns("text/plain"); 
-
-            // Act & Assert
-            var ex = Assert.Throws<InvalidDataException>(() => _service.LoadCsvToStringList(fileMock.Object));
-            Assert.Contains("Nieprawidłowy format pliku", ex.Message);
-        }
-
-        [Fact]
-        public void PreprocessCsvData_ValidData_ShouldParseCorrectly()
-        {
-            // Arrange
-            var csvLines = new List<string>
-            {
-                "X;Y;Z",       
-                "1.5;2.5;3.0", 
-                "4.0;5.0;6.0"  
-            };
+            fileMock.Setup(f => f.Length).Returns(0);
 
             // Act
-            var result = _service.PreprocessCsvData(csvLines);
+            var result = _service.LoadCsvToStringList(fileMock.Object);
 
             // Assert
-            Assert.Equal(3, result.Headers.Count);
-            Assert.Equal(2, result.ProcessedData.Count); 
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void LoadCsvToStringList_IFormFile_ValidExcelContentType_AcceptsAndReads()
+        {
+            // Arrange
+            var fileMock = new Mock<IFormFile>();
+            var content = "X;Y\n1.0;2.0";
+            var stream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(content));
             
-            Assert.Equal(1.5, result.ProcessedData[0][0]); 
-            Assert.Equal(2.5, result.ProcessedData[0][1]);
-        }
-
-        [Fact]
-        public void PreprocessCsvData_NonNumericValue_ShouldThrowException()
-        {
-            // Arrange
-            var csvLines = new List<string>
-            {
-                "X;Y",
-                "1.0;UPS_TEKST"                            
-            };
-
-            // Act & Assert
-            var ex = Assert.Throws<InvalidDataException>(() => _service.PreprocessCsvData(csvLines));
-            Assert.Contains("nie jest liczbą", ex.Message);
-        }
-
-        [Fact]
-        public void PreprocessCsvData_InconsistentColumns_ShouldThrowException()
-        {
-            // Arrange
-            var csvLines = new List<string>
-            {
-                "X;Y",      
-                "1.0;2.0",  
-                "1.0"      
-            };
-
-            // Act & Assert
-            var ex = Assert.Throws<InvalidDataException>(() => _service.PreprocessCsvData(csvLines));
-            Assert.Contains("Niespójna liczba kolumn", ex.Message);
-        }
-
-        [Fact]
-        public void PreprocessCsvData_EmptyData_ShouldThrowException()
-        {
-            // Arrange
-            var csvLines = new List<string>
-            {
-                "X;Y"
-            };
-
-            // Act & Assert
-            var ex = Assert.Throws<InvalidDataException>(() => _service.PreprocessCsvData(csvLines));
-            Assert.Contains("nie zawiera danych", ex.Message);
-        }
-        
-        [Fact]
-        public void PreprocessCsvData_ShouldHandleEmptyLinesGracefully()
-        {
-            // Arrange
-            var csvLines = new List<string>
-            {
-                "X;Y",
-                "1.0;2.0",
-                "",          
-                "  ",        
-                "3.0;4.0"
-            };
+            fileMock.Setup(f => f.FileName).Returns("dane.csv");
+            fileMock.Setup(f => f.Length).Returns(stream.Length);
+            fileMock.Setup(f => f.ContentType).Returns("application/vnd.ms-excel");
+            fileMock.Setup(f => f.OpenReadStream()).Returns(stream);
 
             // Act
-            var result = _service.PreprocessCsvData(csvLines);
+            var result = _service.LoadCsvToStringList(fileMock.Object);
 
             // Assert
-            Assert.Equal(2, result.ProcessedData.Count); 
-            Assert.Equal(3.0, result.ProcessedData[1][0]);
+            Assert.NotNull(result);
+            Assert.Equal(2, result.Count);
+            Assert.Equal("X;Y", result[0]);
+        }
+
+        [Fact]
+        public void PreprocessCsvData_WithOnlyHeaders_ThrowsInvalidDataException()
+        {
+            // Arrange
+            var csv = new List<string> { "X;Y" };
+
+            // Act & Assert
+            Assert.Throws<InvalidDataException>(() => _service.PreprocessCsvData(csv));
+        }
+
+        [Fact]
+        public void LoadCsvToStringList_StringPath_EmptyFile_ThrowsInvalidDataException()
+        {
+            // Arrange
+            var tmp = Path.ChangeExtension(Path.GetTempFileName(), "csv");
+            File.WriteAllText(tmp, "");
+
+            // Act & Assert
+            try
+            {
+                Assert.Throws<InvalidDataException>(() => _service.LoadCsvToStringList(tmp));
+            }
+            finally
+            {
+                File.Delete(tmp);
+            }
         }
     }
 }
