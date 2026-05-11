@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fKuwteMjEqc=",
+  "dgSpecHash": "nLOiCTg7xn8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KMeansProject\\KMeansProject\\KMeansProject.csproj",
+  "projectFilePath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KmeansProject\\KMeansProject\\KMeansProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\barte\\.nuget\\packages\\antlr4.runtime.standard\\4.12.0\\antlr4.runtime.standard.4.12.0.nupkg.sha512",
     "C:\\Users\\barte\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
@@ -68,10 +68,10 @@
     {
       "code": "NU1603",
       "level": "Warning",
-      "message": "KMeansProject depends on NCalcAsync (>= 3.5.1) but NCalcAsync 3.5.1 was not found. NCalcAsync 4.0.4 was resolved instead.",
-      "projectPath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KMeansProject\\KMeansProject\\KMeansProject.csproj",
+      "message": "Wersja KMeansProject jest zależna od NCalcAsync (>= 3.5.1), ale nie znaleziono NCalcAsync 3.5.1. Zamiast tego rozwiązano NCalcAsync 4.0.4.",
+      "projectPath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KmeansProject\\KMeansProject\\KMeansProject.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KMeansProject\\KMeansProject\\KMeansProject.csproj",
+      "filePath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KmeansProject\\KMeansProject\\KMeansProject.csproj",
       "libraryId": "NCalcAsync",
       "targetGraphs": [
         "net9.0"

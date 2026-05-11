@@ -1,6 +1,6 @@
-﻿using KMeansProject.Services;
-using Microsoft.AspNetCore.Http; 
-using Moq;
+using KMeansProject.Services;
+using Microsoft.AspNetCore.Http;
+using System.Text;
 using Xunit;
 
 namespace KMeansProject.Tests
@@ -18,14 +18,10 @@ namespace KMeansProject.Tests
         public void LoadCsvToStringList_WrongExtension_ShouldThrowException()
         {
             // Arrange
-            var fileMock = new Mock<IFormFile>();
-            fileMock.Setup(f => f.FileName).Returns("data.txt");
-            fileMock.Setup(f => f.Length).Returns(100);
-            
-            fileMock.Setup(f => f.ContentType).Returns("text/plain"); 
+            var file = CreateFormFile("data.txt", "text/plain", "X;Y");
 
             // Act & Assert
-            var ex = Assert.Throws<InvalidDataException>(() => _service.LoadCsvToStringList(fileMock.Object));
+            var ex = Assert.Throws<InvalidDataException>(() => _service.LoadCsvToStringList(file));
             Assert.Contains("Nieprawidłowy format pliku", ex.Message);
         }
 
@@ -35,9 +31,9 @@ namespace KMeansProject.Tests
             // Arrange
             var csvLines = new List<string>
             {
-                "X;Y;Z",       
-                "1.5;2.5;3.0", 
-                "4.0;5.0;6.0"  
+                "X;Y;Z",
+                "1.5;2.5;3.0",
+                "4.0;5.0;6.0"
             };
 
             // Act
@@ -45,9 +41,9 @@ namespace KMeansProject.Tests
 
             // Assert
             Assert.Equal(3, result.Headers.Count);
-            Assert.Equal(2, result.ProcessedData.Count); 
-            
-            Assert.Equal(1.5, result.ProcessedData[0][0]); 
+            Assert.Equal(2, result.ProcessedData.Count);
+
+            Assert.Equal(1.5, result.ProcessedData[0][0]);
             Assert.Equal(2.5, result.ProcessedData[0][1]);
         }
 
@@ -58,7 +54,7 @@ namespace KMeansProject.Tests
             var csvLines = new List<string>
             {
                 "X;Y",
-                "1.0;UPS_TEKST"                            
+                "1.0;UPS_TEKST"
             };
 
             // Act & Assert
@@ -72,9 +68,9 @@ namespace KMeansProject.Tests
             // Arrange
             var csvLines = new List<string>
             {
-                "X;Y",      
-                "1.0;2.0",  
-                "1.0"      
+                "X;Y",
+                "1.0;2.0",
+                "1.0"
             };
 
             // Act & Assert
@@ -95,7 +91,7 @@ namespace KMeansProject.Tests
             var ex = Assert.Throws<InvalidDataException>(() => _service.PreprocessCsvData(csvLines));
             Assert.Contains("nie zawiera danych", ex.Message);
         }
-        
+
         [Fact]
         public void PreprocessCsvData_ShouldHandleEmptyLinesGracefully()
         {
@@ -104,8 +100,8 @@ namespace KMeansProject.Tests
             {
                 "X;Y",
                 "1.0;2.0",
-                "",          
-                "  ",        
+                "",
+                "  ",
                 "3.0;4.0"
             };
 
@@ -113,8 +109,18 @@ namespace KMeansProject.Tests
             var result = _service.PreprocessCsvData(csvLines);
 
             // Assert
-            Assert.Equal(2, result.ProcessedData.Count); 
+            Assert.Equal(2, result.ProcessedData.Count);
             Assert.Equal(3.0, result.ProcessedData[1][0]);
+        }
+
+        private static IFormFile CreateFormFile(string fileName, string contentType, string content)
+        {
+            var stream = new MemoryStream(Encoding.UTF8.GetBytes(content));
+            return new FormFile(stream, 0, stream.Length, "file", fileName)
+            {
+                Headers = new HeaderDictionary(),
+                ContentType = contentType
+            };
         }
     }
 }

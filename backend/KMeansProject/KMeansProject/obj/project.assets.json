@@ -2110,11 +2110,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KMeansProject\\KMeansProject\\KMeansProject.csproj",
+      "projectUniqueName": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KmeansProject\\KMeansProject\\KMeansProject.csproj",
       "projectName": "KMeansProject",
-      "projectPath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KMeansProject\\KMeansProject\\KMeansProject.csproj",
+      "projectPath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KmeansProject\\KMeansProject\\KMeansProject.csproj",
       "packagesPath": "C:\\Users\\barte\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KMeansProject\\KMeansProject\\obj\\",
+      "outputPath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KmeansProject\\KMeansProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\barte\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2229,7 +2229,7 @@
       "code": "NU1603",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "KMeansProject depends on NCalcAsync (>= 3.5.1) but NCalcAsync 3.5.1 was not found. NCalcAsync 4.0.4 was resolved instead.",
+      "message": "Wersja KMeansProject jest zależna od NCalcAsync (>= 3.5.1), ale nie znaleziono NCalcAsync 3.5.1. Zamiast tego rozwiązano NCalcAsync 4.0.4.",
       "libraryId": "NCalcAsync",
       "targetGraphs": [
         "net9.0"

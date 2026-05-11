@@ -9,13 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5b749e3-81a5-4ef2-9abb-ec4990560310" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../frontend/KMeansFrontend/kmeans-frontend/src/DataSetSection.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/KMeansFrontend/kmeans-frontend/src/DataSetSection.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/KMeansFrontend/kmeans-frontend/src/ManualEditing.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/KMeansFrontend/kmeans-frontend/src/ManualEditing.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/KMeansFrontend/kmeans-frontend/src/setupTests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/KMeansFrontend/kmeans-frontend/src/setupTests.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/KMeansFrontend/kmeans-frontend/tests/dataset.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/KMeansFrontend/kmeans-frontend/tests/dataset.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/KMeansFrontend/kmeans-frontend/tests/manualEditing.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/KMeansFrontend/kmeans-frontend/tests/manualEditing.spec.ts" afterDir="false" />
-    </list>
+    <list default="true" id="c5b749e3-81a5-4ef2-9abb-ec4990560310" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,7 +19,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="13" />
+    <option name="cachedIndexableFilesCount" value="121" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -83,30 +77,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.KMeansProject: http.executor": "Run",
-    ".NET Launch Settings Profile.KMeansProject: https.executor": "Run",
-    ".NET Project.TestConsoleApp.executor": "Run",
-    "HTTP Request.All in KMeansProject.executor": "Run",
-    "HTTP Request.KMeansProject | #1.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "XThreadsFramesViewSplitterKey": "0.6548387",
-    "git-widget-placeholder": "Bartek__Testy__Frontend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.editor",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.KMeansProject: http.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.KMeansProject: https.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Project.TestConsoleApp.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.All in KMeansProject.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.KMeansProject | #1.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.6548387&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Bartek__Testy__Frontend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.KMeansProject: http">
     <configuration name="TestConsoleApp" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -280,6 +274,14 @@
       <workItem from="1774859328137" duration="2291000" />
       <workItem from="1778051491556" duration="1506000" />
       <workItem from="1778054186364" duration="3454000" />
+      <workItem from="1778063288013" duration="237000" />
+      <workItem from="1778095505492" duration="2158000" />
+      <workItem from="1778171746447" duration="601000" />
+      <workItem from="1778446673494" duration="1986000" />
+      <workItem from="1778522880274" duration="247000" />
+      <workItem from="1778523536376" duration="289000" />
+      <workItem from="1778524250158" duration="1481000" />
+      <workItem from="1778534540483" duration="1394000" />
     </task>
     <task id="LOCAL-00001" summary="clear and updateDataSet functions and dto, services and controllers folders">
       <option name="closed" value="true" />
@@ -592,6 +594,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/KMeansProject.Tests/CentroidManagerControllerPlaywrightTests.cs</url>
+          <line>181</line>
+          <properties documentPath="C:\Users\barte\OneDrive\Pulpit\Inżynierka\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\backend\KMeansProject\KMeansProject.Tests\CentroidManagerControllerPlaywrightTests.cs" containingFunctionPresentation="Property 'Request'">
+            <startOffsets>
+              <option value="5714" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5812" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="73" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

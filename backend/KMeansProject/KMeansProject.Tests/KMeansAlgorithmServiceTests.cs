@@ -1,30 +1,17 @@
 ﻿using KMeansProject.Models;
 using KMeansProject.Services;
-using AutoMapper;
-using Microsoft.AspNetCore.SignalR;
-using Moq;
-using KMeansProject.Hubs;
 using Xunit;
 
 namespace KMeansProject.Tests;
 
 public class KMeansAlgorithmServiceTests
 {
-    private readonly Mock<IMapper> _mapperMock;
-        private readonly Mock<IHubContext<KMeansHub>> _hubContextMock;
-        private readonly Mock<IClientProxy> _clientProxyMock;
         private readonly KMeansAlgorithmService _service;
         private readonly IDistanceMetric _metric;
 
         public KMeansAlgorithmServiceTests()
         {
-            _mapperMock = new Mock<IMapper>();
-            _hubContextMock = new Mock<IHubContext<KMeansHub>>();
-            _clientProxyMock = new Mock<IClientProxy>();
-            
-            _hubContextMock.Setup(x => x.Clients.All).Returns(_clientProxyMock.Object);
-
-            _service = new KMeansAlgorithmService(_mapperMock.Object, _hubContextMock.Object);
+            _service = new KMeansAlgorithmService(TestMapperFactory.Create(), new NoOpHubContext());
             
             _metric = new EuclideanMetric();
         }

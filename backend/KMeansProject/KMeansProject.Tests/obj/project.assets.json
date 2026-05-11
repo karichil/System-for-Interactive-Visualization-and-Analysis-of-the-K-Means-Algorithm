@@ -3718,11 +3718,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KMeansProject\\KMeansProject.Tests\\KMeansProject.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KmeansProject\\KmeansProject.tests\\KMeansProject.Tests.csproj",
       "projectName": "KMeansProject.Tests",
-      "projectPath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KMeansProject\\KMeansProject.Tests\\KMeansProject.Tests.csproj",
+      "projectPath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KmeansProject\\KmeansProject.tests\\KMeansProject.Tests.csproj",
       "packagesPath": "C:\\Users\\barte\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KMeansProject\\KMeansProject.Tests\\obj\\",
+      "outputPath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KmeansProject\\KmeansProject.tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\barte\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3740,8 +3740,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KMeansProject\\KMeansProject\\KMeansProject.csproj": {
-              "projectPath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KMeansProject\\KMeansProject\\KMeansProject.csproj"
+            "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KmeansProject\\KMeansProject\\KMeansProject.csproj": {
+              "projectPath": "C:\\Users\\barte\\OneDrive\\Pulpit\\Inżynierka\\System-for-Interactive-Visualization-and-Analysis-of-the-K-Means-Algorithm\\backend\\KmeansProject\\KMeansProject\\KMeansProject.csproj"
             }
           }
         }
@@ -3834,7 +3834,7 @@
       "code": "NU1603",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "KMeansProject depends on NCalcAsync (>= 3.5.1) but NCalcAsync 3.5.1 was not found. NCalcAsync 4.0.4 was resolved instead.",
+      "message": "Wersja KMeansProject jest zależna od NCalcAsync (>= 3.5.1), ale nie znaleziono NCalcAsync 3.5.1. Zamiast tego rozwiązano NCalcAsync 4.0.4.",
       "libraryId": "NCalcAsync",
       "targetGraphs": [
         "net9.0"
@@ -3844,7 +3844,7 @@
       "code": "NU1608",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: AutoMapper.Extensions.Microsoft.DependencyInjection 12.0.1 requires AutoMapper (= 12.0.1) but version AutoMapper 16.0.0 was resolved.",
+      "message": "Wykryta wersja pakietu jest poza ograniczeniami zależności: element AutoMapper.Extensions.Microsoft.DependencyInjection 12.0.1 wymaga wersji AutoMapper (= 12.0.1), ale rozpoznano wersję AutoMapper 16.0.0.",
       "libraryId": "AutoMapper",
       "targetGraphs": [
         "net9.0"
@@ -3854,7 +3854,7 @@
       "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'AutoMapper' 16.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-rvv3-g6hj-g44x",
+      "message": "Pakiet „AutoMapper” 16.0.0 ma znane wysoka luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-rvv3-g6hj-g44x",
       "libraryId": "AutoMapper",
       "targetGraphs": [
         "net9.0"
